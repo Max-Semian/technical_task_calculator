@@ -899,3 +899,230 @@ body {
         font-size: 1.6rem;
     }
 } 
+
+/* Mobile Adaptations */
+@media (max-width: 360px) {
+    .calculator-container {
+        padding: 0 15px;
+    }
+    
+    .calculator-title {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .custom-select {
+        height: 80px;
+        padding: 0 15px;
+        font-size: 0.9rem;
+    }
+    
+    .pumping-value {
+        font-size: 1.5rem;
+        padding: 10px 0;
+    }
+    
+    .range-labels {
+        font-size: 0.75rem;
+    }
+    
+    .brand-selection {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .brand-item {
+        padding: 8px;
+    }
+    
+    .brand-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .service-item {
+        padding: 8px;
+    }
+    
+    .service-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .card-container {
+        margin: 15px -15px;
+        padding: 10px;
+    }
+    
+    .credit-card {
+        padding: 15px;
+        min-height: auto;
+    }
+    
+    .card-number {
+        font-size: 1.2rem;
+    }
+    
+    .card-holder, .card-expiry {
+        font-size: 0.8rem;
+    }
+    
+    .card-logo {
+        width: 40px;
+        height: 25px;
+    }
+    
+    .tariff-section {
+        padding: 15px;
+    }
+    
+    .tariff-header {
+        font-size: 1.2rem;
+    }
+    
+    .promo-section h6 {
+        font-size: 1rem;
+    }
+    
+    .promo-options {
+        gap: 10px;
+    }
+    
+    .promo-option {
+        padding: 10px;
+    }
+    
+    .promo-percent {
+        font-size: 1.2rem;
+    }
+    
+    .promo-description {
+        font-size: 0.8rem;
+    }
+    
+    .savings-section {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .savings-title {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+    
+    .savings-horizontal {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .savings-horizontal .saving-item {
+        width: 100%;
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 0;
+    }
+    
+    .savings-horizontal .saving-label {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin: 0;
+    }
+    
+    .savings-horizontal .saving-value {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin: 0;
+    }
+    
+    .order-btn {
+        padding: 10px;
+        font-size: 0.9rem;
+        margin-top: 10px;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .modal-content {
+        margin: 10px;
+    }
+    
+    .modal-body {
+        padding: 15px;
+    }
+    
+    .form-control {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+
+    /* Стили для модального окна */
+    .modal-dialog {
+        margin: 0.5rem;
+        max-width: calc(100% - 1rem);
+    }
+    
+    .modal-content {
+        margin: 0;
+        border-radius: 8px;
+        max-height: calc(100vh - 1rem);
+        overflow-y: auto;
+    }
+    
+    .modal-header {
+        padding: 10px 15px;
+    }
+    
+    .modal-title {
+        font-size: 1.1rem;
+    }
+    
+    .modal-body {
+        padding: 15px;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+    }
+    
+    .custom-select {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+    
+    .custom-select option {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+    
+    /* Стили для выпадающего списка */
+    select.form-control {
+        height: auto;
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+    
+    /* Стили для кнопок в модальном окне */
+    .modal-footer {
+        padding: 10px 15px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .modal-footer .btn {
+        width: 100%;
+        margin: 0;
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+} 
