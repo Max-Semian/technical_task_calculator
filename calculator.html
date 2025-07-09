@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор тарифов</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/calculator.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row min-vh-100">
+            <!-- Left side - Calculator -->
+            <div class="col-lg-8 bg-light p-5">
+                <div class="calculator-container">
+                    <h1 class="calculator-title mb-4">Калькулятор тарифов</h1>
+                    
+                    <!-- Region Selection -->
+                    <div class="mb-4">
+                        <label class="form-label text-muted mb-3">Укажите регион передвижения</label>
+                        <div class="custom-select-wrapper">
+                            <select id="regionSelect" class="custom-select">
+                                <option value="1">Ленинградская область</option>
+                                <option value="2">Московская область</option>
+                                <option value="3">Свердловская область</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Pumping Volume -->
+                    <div class="mb-4">
+                        <label class="form-label text-muted mb-3">Прокачка</label>
+                        <div class="pumping-container">
+                            <div class="pumping-value mb-3">
+                                <span id="pumpingValue">200</span> тонн
+                            </div>
+                            <div class="range-container">
+                                <input type="range" id="pumpingRange" class="custom-range" min="0" max="500" value="200" step="10">
+                            </div>
+                        </div>
+                        <div class="range-labels">
+                            <span>0 тонн</span>
+                            <span>250 тонн</span>
+                            <span>500+ тонн</span>
+                        </div>
+                    </div>
+
+                    <!-- Fuel Type Toggle -->
+                    <div class="mb-4">
+                        <div class="fuel-toggle">
+                            <button type="button" class="fuel-btn active" data-fuel="benzin">Бензин</button>
+                            <button type="button" class="fuel-btn" data-fuel="gas">Газ</button>
+                            <button type="button" class="fuel-btn" data-fuel="dt">ДТ</button>
+                        </div>
+                    </div>
+
+                    <!-- Brand Selection -->
+                    <div class="mb-4">
+                        <label class="form-label text-muted mb-3">Укажите любимый бренд</label>
+                        <div class="brand-selection" id="brandSelection">
+                            <!-- Brands will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Additional Services -->
+                    <div class="mb-4">
+                        <label class="form-label text-muted mb-3">Дополнительные услуги</label>
+                        <div class="services-grid">
+                            <div class="service-item" data-service="shlangi">
+                                <div class="service-icon">
+                                    <img src="img/shtrafi.png" alt="Шланги" />
+                                </div>
+                                <span>Шланги</span>
+                            </div>
+                            <div class="service-item" data-service="parking">
+                                <div class="service-icon">
+                                    <img src="img/parking.png" alt="Парковки" />
+                                </div>
+                                <span>Парковки</span>
+                            </div>
+                            <div class="service-item" data-service="edo">
+                                <div class="service-icon">
+                                    <img src="img/edo.png" alt="ЭДО" />
+                                </div>
+                                <span>ЭДО</span>
+                            </div>
+                            <div class="service-item" data-service="wash">
+                                <div class="service-icon">
+                                    <img src="img/moyka.png" alt="Мойки" />
+                                </div>
+                                <span>Мойки</span>
+                            </div>
+                            <div class="service-item" data-service="otgruzka">
+                                <div class="service-icon">
+                                    <img src="img/otsrochka.png" alt="Отсрочка" />
+                                </div>
+                                <span>Отсрочка</span>
+                            </div>
+                            <div class="service-item" data-service="telematika">
+                                <div class="service-icon">
+                                    <img src="img/telematic.png" alt="Телематика" />
+                                </div>
+                                <span>Телематика</span>
+                            </div>
+                            <div class="service-item" data-service="pripay">
+                                <div class="service-icon">
+                                    <img src="img/ppppay.png" alt="PRIPAY" />
+                                </div>
+                                <span>PRIPAY</span>
+                            </div>
+                            <div class="service-item" data-service="sms">
+                                <div class="service-icon">
+                                    <img src="img/sms.png" alt="СМС" />
+                                </div>
+                                <span>СМС</span>
+                            </div>
+                            <div class="service-item" data-service="strakhovka">
+                                <div class="service-icon">
+                                    <img src="img/insurance.png" alt="Страховка" />
+                                </div>
+                                <span>Страховка</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right side - Card and Results -->
+            <div class="col-lg-4 p-0">
+                <div class="card-container">
+                    <!-- Card -->
+                     <!-- Suitable Tariff -->
+                    <div class="tariff-section">
+                        <div class="tariff-header">
+                            <span class="suitable-label">Подходящий тариф</span>
+                            <span class="tariff-badge" id="currentTariff">★ Избранный</span>
+                        </div>
+                    </div>
+                    <div class="credit-card">
+                        <div class="card-background">
+                        </div>
+                    </div>
+                    
+                    <!-- FZS Network -->
+                    <div class="fzs-network">
+                        <span class="fzs-icon">🌐</span>
+                        <span class="fzs-text">Сеть АЗС на карте</span>
+                    </div>
+
+                    <!-- Promo Action -->
+                    <div class="promo-section">
+                        <h6>Выберите промо-акцию:</h6>
+                        <div class="promo-options" id="promoOptions">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="savings-section">
+                        <div class="savings-horizontal">
+                            <div class="savings-title">
+                                Ваша<br>экономия:
+                            </div>
+                            <div class="saving-item">
+                                <div class="saving-label">экономия в год</div>
+                                <div class="saving-value" id="yearSaving">от 34 млн ₽</div>
+                            </div>
+                            <div class="saving-item">
+                                <div class="saving-label">экономия в месяц</div>
+                                <div class="saving-value" id="monthSaving">от 1 700 000 ₽</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Button -->
+                    <button class="order-btn" id="orderBtn" data-bs-toggle="modal" data-bs-target="#orderModal">
+                        Заказать тариф «<span id="orderTariffName">Избранный</span>» →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Modal -->
+    <div class="modal fade" id="orderModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Заказать тариф «<span id="modalTariffName">Избранный</span>»</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="orderForm">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="innInput" placeholder="Номер ИНН" maxlength="12" required>
+                            <div class="invalid-feedback">Введите 12 цифр ИНН</div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="tel" class="form-control" id="phoneInput" placeholder="Телефон для связи" maxlength="11" required>
+                            <div class="invalid-feedback">Введите 11 цифр телефона</div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="emailInput" placeholder="E-mail для связи" required>
+                            <div class="invalid-feedback">Введите корректный email</div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="agreementCheck" required>
+                                <label class="form-check-label" for="agreementCheck">
+                                    Согласен с обработкой персональных данных
+                                </label>
+                                <div class="invalid-feedback">Необходимо согласие с обработкой данных</div>
+                            </div>
+                        </div>
+                        <div id="formMessage" class="form-message"></div>
+                        <button type="submit" class="btn order-modal-btn w-100">Заказать тариф «Избранный»</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Базовый URL для API
+        const API_URL = 'http://localhost:8000';
+    </script>
+    <script src="js/calculator.js"></script>
+</body>
+</html> 
